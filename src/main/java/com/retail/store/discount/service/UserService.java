@@ -1,6 +1,7 @@
 package com.retail.store.discount.service;
 
 import com.retail.store.discount.entity.User;
+import com.retail.store.discount.exception.RetailStoreResourceNotFoundException;
 import com.retail.store.discount.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,10 @@ public class UserService {
     public User getUserById(Long userId){
         User user = this.userRepository.findOneById(userId);
         if(user == null){
-            // TODO : throw exception
+            throw new RetailStoreResourceNotFoundException(
+                    RetailStoreResourceNotFoundException.Resource.USER,
+                    userId
+            );
         }
         return user;
     }

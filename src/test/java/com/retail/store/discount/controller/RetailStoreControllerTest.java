@@ -164,4 +164,18 @@ public class RetailStoreControllerTest {
                 .andExpect(jsonPath("$.netPayableAmount").value(190));
 
     }
+
+
+    @Test
+    public void shouldReturnError_whenUserIsNotFound() throws Exception{
+
+        String notFoundUserJson = "{ \"userId\": 20, \"amount\": 200 }";
+        this.mockMvc.perform(post("/api/retail-store/calculate-discount")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(notFoundUserJson))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.apiError.errorNumber").value("RETAIL-STORE-ERROR-001"))
+                .andExpect(jsonPath("$.apiError.errorMessage").value("user '20' couldn't be found."));
+
+    }
 }
