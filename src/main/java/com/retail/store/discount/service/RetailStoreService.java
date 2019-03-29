@@ -1,11 +1,10 @@
 package com.retail.store.discount.service;
 
-import com.retail.store.discount.dto.RetailDiscountDto;
+import com.retail.store.discount.dto.RetailResponseDto;
 import com.retail.store.discount.dto.RetailRequestDto;
 import com.retail.store.discount.dto.UserDto;
 import com.retail.store.discount.entity.User;
 import com.retail.store.discount.enumeration.UserType;
-import com.retail.store.discount.repository.UserRepository;
 import com.retail.store.discount.util.NumberUtils;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +14,20 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class RetailStoreService {
 
-    private UserRepository userRepository;
+    private final UserService userService;
 
-    public RetailStoreService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public RetailStoreService(UserService userService) {
+        this.userService = userService;
     }
 
-    public RetailDiscountDto getRetailDiscount(RetailRequestDto retailRequestDto){
-        // get user details
-        User user = userRepository.findOneById(retailRequestDto.getUserId());
-        if(user == null){
-            // TODO : throw exception
-        }
+    public RetailResponseDto getRetailDiscount(RetailRequestDto retailRequestDto){
+        User user = userService.getUserById(retailRequestDto.getUserId());
 
         double discountAmount = getDiscountAmount(retailRequestDto.getAmount(), user);
         double netPayableAmount = retailRequestDto.getAmount() - discountAmount;
 
         // TODO : use map struct
-        return new RetailDiscountDto()
+        return new RetailResponseDto()
                 .setUser(new UserDto().setId(user.getId()).setUserType(user.getUserType()).setName(user.getName()).setStartDate(user.getStartDate()))
                 .setOriginalAmount(retailRequestDto.getAmount())
                 .setDiscountAmount(discountAmount)
@@ -51,9 +46,12 @@ public class RetailStoreService {
     }
 
     private double getDiscountPercentageBasedOnUserType(UserType userType, LocalDate startDate){
-        double discountPercentage = userType.getDiscount();
+        if(userType == null){
+            return 0.0;
+        }
+        double discountPercentage = userType.getDiscountPercentage();
         if(userType.equals(UserType.CUSTOMER)){
-            long numberOfYears = ChronoUnit.YEARS.between(LocalDate.now(), startDate);
+            long numberOfYears = ChronoUnit.YEARS.between(startDate, LocalDate.now());
             if (numberOfYears >= 2) {
                 discountPercentage = 5.0;
             }

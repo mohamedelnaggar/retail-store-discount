@@ -8,13 +8,13 @@ public enum UserType{
     GROCERIES(0.0);
 
 
-    private double discount;
+    private double discountPercentage;
 
-    UserType(double discount) {
-        this.discount = discount;
+    UserType(double discountPercentage) {
+        this.discountPercentage = discountPercentage;
     }
 
-    public double getDiscount() {
-        return discount;
+    public double getDiscountPercentage() {
+        return discountPercentage;
     }
 }

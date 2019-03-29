@@ -2,7 +2,7 @@ package com.retail.store.discount.dto;
 
 import java.io.Serializable;
 
-public class RetailDiscountDto implements Serializable {
+public class RetailResponseDto implements Serializable {
 
     private UserDto user;
     private Double originalAmount;
@@ -13,7 +13,7 @@ public class RetailDiscountDto implements Serializable {
         return user;
     }
 
-    public RetailDiscountDto setUser(UserDto user) {
+    public RetailResponseDto setUser(UserDto user) {
         this.user = user;
         return this;
     }
@@ -22,7 +22,7 @@ public class RetailDiscountDto implements Serializable {
         return originalAmount;
     }
 
-    public RetailDiscountDto setOriginalAmount(Double originalAmount) {
+    public RetailResponseDto setOriginalAmount(Double originalAmount) {
         this.originalAmount = originalAmount;
         return this;
     }
@@ -31,7 +31,7 @@ public class RetailDiscountDto implements Serializable {
         return discountAmount;
     }
 
-    public RetailDiscountDto setDiscountAmount(Double discountAmount) {
+    public RetailResponseDto setDiscountAmount(Double discountAmount) {
         this.discountAmount = discountAmount;
         return this;
     }
@@ -40,14 +40,14 @@ public class RetailDiscountDto implements Serializable {
         return netPayableAmount;
     }
 
-    public RetailDiscountDto setNetPayableAmount(Double netPayableAmount) {
+    public RetailResponseDto setNetPayableAmount(Double netPayableAmount) {
         this.netPayableAmount = netPayableAmount;
         return this;
     }
 
     @Override
     public String toString() {
-        return "RetailDiscountDto{" +
+        return "RetailResponseDto{" +
                 "user=" + user +
                 ", originalAmount=" + originalAmount +
                 ", discountAmount=" + discountAmount +
