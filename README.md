@@ -1,4 +1,4 @@
-# retail-store-discount
+# Retail Store Discount Service
 
 This microservice implements a basic retail discount service.
 
