@@ -4,6 +4,8 @@ import com.retail.store.discount.entity.User;
 import com.retail.store.discount.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+
 @Service
 public class UserService {
 
@@ -13,7 +15,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Iterable<User> getAllUsers(){
+    public Collection<User> getAllUsers(){
         return this.userRepository.findAll();
     }
 

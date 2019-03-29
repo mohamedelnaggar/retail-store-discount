@@ -1,8 +1,7 @@
 package com.retail.store.discount.service;
 
-import com.retail.store.discount.dto.RetailResponseDto;
 import com.retail.store.discount.dto.RetailRequestDto;
-import com.retail.store.discount.dto.UserDto;
+import com.retail.store.discount.dto.RetailResponseDto;
 import com.retail.store.discount.entity.User;
 import com.retail.store.discount.enumeration.UserType;
 import com.retail.store.discount.util.NumberUtils;
@@ -26,9 +25,8 @@ public class RetailStoreService {
         double discountAmount = getDiscountAmount(retailRequestDto.getAmount(), user);
         double netPayableAmount = retailRequestDto.getAmount() - discountAmount;
 
-        // TODO : use map struct
         return new RetailResponseDto()
-                .setUser(new UserDto().setId(user.getId()).setUserType(user.getUserType()).setName(user.getName()).setStartDate(user.getStartDate()))
+                .setUser(user)
                 .setOriginalAmount(retailRequestDto.getAmount())
                 .setDiscountAmount(discountAmount)
                 .setNetPayableAmount(netPayableAmount);

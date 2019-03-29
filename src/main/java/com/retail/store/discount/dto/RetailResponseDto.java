@@ -1,19 +1,21 @@
 package com.retail.store.discount.dto;
 
+import com.retail.store.discount.entity.User;
+
 import java.io.Serializable;
 
 public class RetailResponseDto implements Serializable {
 
-    private UserDto user;
+    private User user;
     private Double originalAmount;
     private Double discountAmount;
     private Double netPayableAmount;
 
-    public UserDto getUser() {
+    public User getUser() {
         return user;
     }
 
-    public RetailResponseDto setUser(UserDto user) {
+    public RetailResponseDto setUser(User user) {
         this.user = user;
         return this;
     }
