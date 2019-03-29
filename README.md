@@ -13,7 +13,7 @@ After cloning the repository :
 
 to quickly get started and initialize the environment, use the project runner command :
 
-run the database creator script
+Install mysql database, and run the database creator script
 
 ```bash
     sh docs/recreate-db.sh
@@ -24,9 +24,6 @@ put your mysql username and password in application.yml file
 ```bash
     mvn spring-boot:run
 ```
-
-which will run the development environment and install its dependencies (including a postgres docker container), and immediately give you access to [the api](http://localhost:7000/documentation/swagger-ui.html) in development mode .
-
 
 ## Running the service tests  
 
