@@ -11,8 +11,6 @@ After cloning the repository :
     cd retail-store-discount
 ```
 
-to quickly get started and initialize the environment, use the project runner command :
-
 Install mysql database, and run the database creator script
 
 ```bash
@@ -20,6 +18,8 @@ Install mysql database, and run the database creator script
 ```
 
 put your mysql username and password in application.yml file
+
+Then run
 
 ```bash
     mvn spring-boot:run
@@ -32,19 +32,39 @@ running the tests (all tests: unit tests and integration tests):
 ```bash
     mvn clean test
 ```
-
-## Api Documentation  
-
-A swagger api documentation is avilable through visiting the documentation url at :
-
-    {host:port}/documentation/swagger-ui.html 
     
 
-## The Handled scenarios
-The input is json like 
-{
-	"userId": 20,
-	"amount": 200
-}
+## The Handled Scenarios
 
-and the discount will be calculated based on user type, start date, and amount
+* The users api (get all users)
+
+    [Get request]
+    http://localhost:8080/api/users
+
+
+* The calculate discount api
+
+    [POST request]
+    http://localhost:8080/api/retail-store/calculate-discount
+    
+        The input is json like
+        {
+            "userId": 20,
+            "amount": 200
+        }
+    
+    
+        The output is
+        {
+            "user": {
+                "id": 1,
+                "name": "Mohamed",
+                "userType": "EMPLOYEE",
+                "startDate": "2019-03-25"
+            },
+            "originalAmount": 200,
+            "discountAmount": 60,
+            "netPayableAmount": 140
+        }
+
+The discount will be calculated based on user type, start date, and amount
