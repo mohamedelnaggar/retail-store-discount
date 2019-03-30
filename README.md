@@ -49,7 +49,7 @@ running the tests (all tests: unit tests and integration tests):
     
         The input is json like
         {
-            "userId": 20,
+            "userId": 1,
             "amount": 200
         }
     
